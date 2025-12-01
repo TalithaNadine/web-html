@@ -1,1 +1,863 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PuffieLand - Toko Boneka Lucu dan Berkualitas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        /* Variabel CSS */
+        :root {
+            --puffie-color: #a67c52; /* Coklat muda */
+            --land-color: #ff9ebb; /* Pink muda */
+            --accent-color: #ff6b8b;
+            --light-color: #fff9f9;
+            --dark-color: #333333;
+            --gray-color: #f5f5f5;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        body {
+            background-color:  #fff7e8;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--land-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--land-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white ;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 700;
+            font-style: italic;
+            text-decoration: none;
+        }
+
+        .logo .puffie {
+            color: var(--puffie-color);
+        }
+
+        .logo .land {
+            color: var(--land-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--puffie-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--puffie-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ffcce6 0%, #e6ccff 100%);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .black-text {
+            color: var(--dark-color);
+        }
+
+        .hero h1 .pink-text {
+            color: var(--land-color);
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+
+        /* About Section */
+        .about {
+            background-color: white;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .about-image {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 30px auto 0;
+            text-align: left;
+            font-size: 18px;
+        }
+
+         .about-content h2 .black-text {
+            color: var(--dark-color);
+        }
+
+        .about-content h2 .pink-text {
+            color: var(--land-color);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--gray-color);
+        }
+
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-info {
+            padding: 15px;
+        }
+
+        .gallery-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .gallery-info .price {
+            color: var(--land-color);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* Owner Section */
+        .owner {
+            background-color: white;
+            text-align: center;
+        }
+
+        .owner h2 {
+            margin-bottom: 50px;
+        }
+
+        .owner-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .owner-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .owner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .owner-text {
+            text-align: left;
+            max-width: 600px;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--puffie-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background-color: white;
+            z-index: 1001;
+            transition: var(--transition);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            padding: 80px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-nav ul li {
+            margin-bottom: 0;
+        }
+
+        .mobile-nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .mobile-nav ul li a:hover {
+            background-color: var(--light-color);
+            color: var(--puffie-color);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero {
+                padding: 180px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .owner-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .mobile-nav {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo"><span class="puffie">Puffie</span><span class="land">Land</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#owner">Owner</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <button class="close-menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#owner">Owner</a></li>
+        </ul>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>
+                <span class="black-text">💗🧸Happiness Comes</span>
+                <span class="pink-text">in a Cute Plush🧸💗</span>
+            </h1>
+            <p>Puffieland adalah toko boneka yang menghadirkan berbagai koleksi plushie lucu, lembut, dan berkualitas tinggi. Setiap boneka dipilih dengan teliti agar memberikan kenyamanan, keceriaan, dan menjadi teman terbaik untuk semua usia.</p>
+            <p>Di Puffieland, kami percaya bahwa setiap boneka punya cerita dan siap menemukan rumah barunya. 💗🧸✨</p>
+            <a href="#gallery" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-image">
+                <!-- Placeholder untuk wall.jpg -->
+                 <div style="height: 50px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                 <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\ted.jpg">
+            </div>
+            <div class="about-content">
+                <h2>
+                    <span class="black-text">💗🧸Puffie</span>
+                <span class="pink-text">Land🧸💗</span></h2>
+                <p>adalah brand boneka yang menghadirkan dunia lembut penuh imajinasi, terinspirasi dari karakter lucu, bentuk yang menggemaskan, dan kenyamanan saat dipeluk. Kami percaya setiap orang berhak merasakan kehangatan kecil yang bisa membuat hari lebih ringan dan hati lebih bahagia.</p>
+                <p>Setiap boneka PuffieLand dibuat dengan:</p>
+                <p>🧸 Material premium & super lembut</p>
+                <p>💛 Desain karakter yang cute dan penuh personality</p>
+                <p>✨ Kualitas jahitan rapi & tahan lama</p>
+                <p>🎨 Packaging estetik & delightful</p>
+                <p>Kami menghadirkan boneka yang bukan hanya lucu, tetapi juga mampu memberi rasa nyaman, mood baik, dan teman kecil di setiap momen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <!-- Item 1 -->
+                <div class="gallery-item">
+                    <div style=" height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\angelo.jpeg">
+                    <div class="gallery-info">
+                        <h3>Angelo Doll</h3>
+                        <p class="price">Rp 89.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\king.jpeg">
+                    <div class="gallery-info">
+                        <h3>King Man Doll</h3>
+                        <p class="price">Rp 75.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\meta.jpeg">
+                    <div class="gallery-info">
+                        <h3>Meta Doll</h3>
+                        <p class="price">Rp 82.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\smy.jpeg">
+                    <div class="gallery-info">
+                        <h3>Smyle Doll</h3>
+                        <p class="price">Rp 92.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\san.jpeg">
+                    <div class="gallery-info">
+                        <h3>Polcasan Doll</h3>
+                        <p class="price">Rp 78.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\saturn.jpeg">
+                    <div class="gallery-info">
+                        <h3>Saturn Doll</h3>
+                        <p class="price">Rp 120.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 7 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\teddy.jpeg">
+                    <div class="gallery-info">
+                        <h3>Teddy Bear</h3>
+                        <p class="price">Rp 85.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 8 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\sol.jpeg">
+                    <div class="gallery-info">
+                        <h3>Sol Cute Doll</h3>
+                        <p class="price">Rp 70.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 9 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\poon.jpeg">
+                    <div class="gallery-info">
+                        <h3>prempoon Doll</h3>
+                        <p class="price">Rp 88.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 10 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\toma.jpeg">
+                    <div class="gallery-info">
+                        <h3>Tomafox Doll</h3>
+                        <p class="price">Rp 92.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 11 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\PAO.jpg">
+                    <div class="gallery-info">
+                        <h3>Paody Doll</h3>
+                        <p class="price">Rp 79.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 12 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\AVO.jpg">
+                    <div class="gallery-info">
+                        <h3>Avocean Doll</h3>
+                        <p class="price">Rp 83.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 13 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\LOOK.jpg">
+                    <div class="gallery-info">
+                        <h3>Look Khunnoo Doll</h3>
+                        <p class="price">Rp 110.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 14 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\guin.jpeg">
+                    <div class="gallery-info">
+                        <h3>Guinzly Doll</h3>
+                        <p class="price">Rp 95.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 15 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\SAM.jpg">
+                    <div class="gallery-info">
+                        <h3>Samruay Doll</h3>
+                        <p class="price">Rp 87.000</p>
+                    </div>
+                </div>
+                
+                <!-- Item 16 -->
+                <div class="gallery-item">
+                    <div style="height: 0px; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"></div>
+                    <img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\babii.jpeg">
+                    <div class="gallery-info">
+                        <h3>Babii Doll</h3>
+                        <p class="price">Rp 99.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Owner Section -->
+    <section id="owner" class="owner">
+        <div class="container">
+            <h2>Biodata</h2>
+            <div class="owner-content">
+                <div class="owner-image">
+                    <!-- Placeholder untuk O.jpg -->
+                    <div style="height: 100%; display: flex; justify-content: center; align-items: center; color: #555; font-weight: bold;"><img src="C:\Users\PT KWOSM\OneDrive - PT. Krakatau Wajatama Osaka Steel Marketing\TUGAS WEBSITE\img\tata.jpeg"></div>
+                </div>
+                <div class="owner-text">
+                    <p><strong>Nama:</strong> Talitha Nadine Nuraini Ginanjar</p>
+                    <p><strong>Peran:</strong> Owner PuffieLand</p>
+                    <p><strong>Tahun Pembuatan:</strong> 2024</p>
+                    <br>
+                    <p><strong>Tentang Saya:</strong></p>
+                    <p>Hai! Saya Talitha, siswa SMA yang membuat website PuffieLand untuk tugas akhir mata pelajaran TIK. Aku memilih tema toko boneka karena menurut aku lucu dan estetik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="#" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-envelope"></i> info@puffieland.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Boneka Indah No. 123, Jakarta</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Menu Cepat</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#owner">Owner</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Deepseak & Pinterest. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle //
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const closeMenu = document.querySelector('.close-menu');
+        const overlay = document.querySelector('.overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Smooth scrolling untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Efek sticky header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = 'white';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
